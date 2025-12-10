@@ -1,0 +1,84 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "A Gyűrűk Ura",
+      "author": "J. R. R. Tolkien",
+      "year": 1954,
+      "cover": "https://picsum.photos/seed/book1/300/450",
+      "description": "Egy epikus fantasy történet a hatalom gyűrűjéről és annak pusztító erejéről."
+    },
+    {
+      "id": 2,
+      "title": "A kis herceg",
+      "author": "Antoine de Saint-Exupéry",
+      "year": 1943,
+      "cover": "https://picsum.photos/seed/book2/300/450",
+      "description": "Egy szívhez szóló mese barátságról, szeretetről és felnövésről."
+    },
+    {
+      "id": 3,
+      "title": "1984",
+      "author": "George Orwell",
+      "year": 1949,
+      "cover": "https://picsum.photos/seed/book3/300/450",
+      "description": "Egy disztópikus regény a totális megfigyelés és az elnyomás világáról."
+    },
+    {
+      "id": 4,
+      "title": "A szolgálólány meséje",
+      "author": "Margaret Atwood",
+      "year": 1985,
+      "cover": "https://picsum.photos/seed/book4/300/450",
+      "description": "Egy jövőbeli társadalom terrorisztikus rendszerének bemutatása."
+    },
+    {
+      "id": 5,
+      "title": "Harry Potter és a Bölcsek Köve",
+      "author": "J. K. Rowling",
+      "year": 1997,
+      "cover": "https://picsum.photos/seed/book5/300/450",
+      "description": "A Roxfort varázslatos világának első fejezete."
+    },
+    {
+      "id": 6,
+      "title": "A méhek titkos élete",
+      "author": "Sue Monk Kidd",
+      "year": 2001,
+      "cover": "https://picsum.photos/seed/book6/300/450",
+      "description": "Egy fiatal lány önismereti utazása az amerikai Délen."
+    },
+    {
+      "id": 7,
+      "title": "A da Vinci-kód",
+      "author": "Dan Brown",
+      "year": 2003,
+      "cover": "https://picsum.photos/seed/book7/300/450",
+      "description": "Művészettörténeti rejtélyek és összeesküvés-elméletek izgalmas thrillerben."
+    },
+    {
+      "id": 8,
+      "title": "Gyilkosság az Orient expresszen",
+      "author": "Agatha Christie",
+      "year": 1934,
+      "cover": "https://picsum.photos/seed/book8/300/450",
+      "description": "Hercule Poirot egyik leghíresebb esete a vonaton."
+    },
+    {
+      "id": 9,
+      "title": "Fahrenheit 451",
+      "author": "Ray Bradbury",
+      "year": 1953,
+      "cover": "https://picsum.photos/seed/book9/300/450",
+      "description": "Egy jövő, ahol könyveket égetnek, és a gondolkodás tiltott."
+    },
+    {
+      "id": 10,
+      "title": "A nevem Piros",
+      "author": "Orhan Pamuk",
+      "year": 1998,
+      "cover": "https://picsum.photos/seed/book10/300/450",
+      "description": "Egy művészeti krimi az Oszmán Birodalomból."
+    }
+  ]
+}
