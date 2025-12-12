@@ -1,6 +1,8 @@
 <script setup>
+import { ref } from 'vue'
 import { Form, Field, ErrorMessage } from 'vee-validate'
-import { registerSchema } from './registerSchema' // ha külön fájlba tetted
+import { registerSchema } from './registerSchema'
+import SuccessCard from './SuccessCard.vue'
 
 const initialValues = {
   name: '',
@@ -9,69 +11,151 @@ const initialValues = {
   passwordConfirm: '',
   birthYear: '',
   acceptTerms: false,
+  newsletter: false,
 }
 
+const lastUser = ref(null)
+
 const handleSubmit = (values, { resetForm }) => {
-  // itt csak konzolra logolunk / “sikeres regisztráció” üzenet
-  console.log('Regisztrációs adatok:', values)
-  alert('Sikeres regisztráció!')
+  // jelszókat nem tároljuk a siker kártyán
+  const { password, passwordConfirm, ...safeValues } = values
+  lastUser.value = safeValues
   resetForm()
 }
 </script>
 
 <template>
-  <Form
-    :validation-schema="registerSchema"
-    :initial-values="initialValues"
-    @submit="handleSubmit"
-    v-slot="{ meta }"
-    class="card"
-  >
-    <!-- Név -->
-    <div class="form-row">
-      <label for="name">Név</label>
-      <Field id="name" name="name" type="text" />
-      <ErrorMessage name="name" class="error" />
+  <div>
+    <Form
+      :validation-schema="registerSchema"
+      :initial-values="initialValues"
+      @submit="handleSubmit"
+      v-slot="{ meta }"
+      class="bg-white shadow-md rounded-lg px-6 py-5 space-y-4"
+    >
+      <!-- mezők (mint korábban) + extra newsletter checkbox -->
+        <div>
+      <label for="name" class="block text-sm font-medium text-gray-700">
+        Név
+      </label>
+      <Field
+        id="name"
+        name="name"
+        type="text"
+        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
+               focus:border-blue-500 focus:ring-blue-500 text-sm"
+      />
+      <ErrorMessage
+        name="name"
+        class="mt-1 text-xs text-red-600"
+      />
     </div>
 
     <!-- Email -->
-    <div class="form-row">
-      <label for="email">Email</label>
-      <Field id="email" name="email" type="email" />
-      <ErrorMessage name="email" class="error" />
+    <div>
+      <label for="email" class="block text-sm font-medium text-gray-700">
+        Email
+      </label>
+      <Field
+        id="email"
+        name="email"
+        type="email"
+        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
+               focus:border-blue-500 focus:ring-blue-500 text-sm"
+      />
+      <ErrorMessage
+        name="email"
+        class="mt-1 text-xs text-red-600"
+      />
     </div>
 
     <!-- Jelszó -->
-    <div class="form-row">
-      <label for="password">Jelszó</label>
-      <Field id="password" name="password" type="password" />
-      <ErrorMessage name="password" class="error" />
+    <div>
+      <label for="password" class="block text-sm font-medium text-gray-700">
+        Jelszó
+      </label>
+      <Field
+        id="password"
+        name="password"
+        type="password"
+        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
+               focus:border-blue-500 focus:ring-blue-500 text-sm"
+      />
+      <ErrorMessage
+        name="password"
+        class="mt-1 text-xs text-red-600"
+      />
     </div>
-
     <!-- Jelszó ismétlés -->
-    <div class="form-row">
-      <label for="passwordConfirm">Jelszó ismét</label>
-      <Field id="passwordConfirm" name="passwordConfirm" type="password" />
-      <ErrorMessage name="passwordConfirm" class="error" />
+    <div>
+      <label
+        for="passwordConfirm"
+        class="block text-sm font-medium text-gray-700"
+      >
+        Jelszó ismét
+      </label>
+      <Field
+        id="passwordConfirm"
+        name="passwordConfirm"
+        type="password"
+        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
+               focus:border-blue-500 focus:ring-blue-500 text-sm"
+      />
+      <ErrorMessage
+        name="passwordConfirm"
+        class="mt-1 text-xs text-red-600"
+      />
     </div>
 
     <!-- Születési év -->
-    <div class="form-row">
-      <label for="birthYear">Születési év</label>
-      <Field id="birthYear" name="birthYear" type="number" />
-      <ErrorMessage name="birthYear" class="error" />
+    <div>
+      <label for="birthYear" class="block text-sm font-medium text-gray-700">
+        Születési év
+      </label>
+      <Field
+        id="birthYear"
+        name="birthYear"
+        type="number"
+        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm
+               focus:border-blue-500 focus:ring-blue-500 text-sm"
+      />
+      <ErrorMessage
+        name="birthYear"
+        class="mt-1 text-xs text-red-600"
+      />
     </div>
 
-    <!-- ÁSZF -->
-    <div class="form-row checkbox-row">
-      <Field id="acceptTerms" name="acceptTerms" type="checkbox" />
-      <label for="acceptTerms">Elfogadom az ÁSZF-et</label>
-    </div>
-    <ErrorMessage name="acceptTerms" class="error" />
+      <!-- Hírlevél -->
+      <div>
+        <div class="flex items-center">
+          <Field
+            id="newsletter"
+            name="newsletter"
+            type="checkbox"
+            class="h-4 w-4 text-blue-600 border-gray-300 rounded
+                   focus:ring-blue-500"
+          />
+          <label for="newsletter" class="ml-2 block text-sm text-gray-700">
+            Kérek hírlevelet
+          </label>
+        </div>
+      </div>
 
-    <!-- Gomb – csak ha valid és volt módosítás -->
-    <button type="submit" :disabled="!meta.valid || !meta.dirty">
-      Regisztráció
-    </button>
-  </Form>
+      <!-- Gomb -->
+      <button
+        type="submit"
+        :disabled="!meta.valid || !meta.dirty"
+        class="w-full inline-flex justify-center py-2 px-4 border border-transparent
+               rounded-md shadow-sm text-sm font-medium text-white
+               bg-blue-600 hover:bg-blue-700
+               disabled:bg-gray-300 disabled:cursor-not-allowed
+               focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+      >
+        Regisztráció
+      </button>
+    </Form>
+
+    <!-- Siker kártya csak akkor, ha van adat -->
+    <SuccessCard v-if="lastUser" :user="lastUser" />
+  </div>
 </template>
